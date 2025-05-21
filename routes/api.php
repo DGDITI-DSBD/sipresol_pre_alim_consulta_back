@@ -149,6 +149,7 @@ Route::prefix('respuestas')->group(function () {
 
 Route::prefix('registros')->group(function () {
 //    Route::get('/', 'App\Http\Controllers\Registro\RegistroController@index');
+    Route::post('/busquedaCurp', 'App\Http\Controllers\Registro\RegistroController@buscarPorCurp');
     Route::post('/', 'App\Http\Controllers\Registro\RegistroController@store');
     Route::get('/id/{id}', 'App\Http\Controllers\Registro\RegistroController@show');
     Route::put('/{id}', 'App\Http\Controllers\Registro\RegistroController@update');

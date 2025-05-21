@@ -62,6 +62,27 @@ class RegistroController extends Controller
         return response()->json(['data' => $registros], 200);
     }
 
+
+    public function buscarPorCurp(Request $request)
+    {
+        $query = Registro::with(['programa']);
+        
+   
+        if ($request->has('curp')) {
+            $curp = $request->curp;
+            $query->where(function($q) use ($curp) {
+                $q->where('curp', '=', $curp);
+            });
+        }
+        
+
+        // Paginación
+        //$perPage = $request->has('per_page') ? $request->per_page : 15;
+        $registros = $query->first();
+        
+        return response()->json(['data' => $registros], 200);
+    }
+
     /**
      * Almacenar un nuevo registro.
      *
